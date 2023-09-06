@@ -1,0 +1,30 @@
+To fix the "Failed to parse saved session file" error in Linux, you can try the following steps:
+
+1. Open a terminal or console.
+2. Make sure you have root access or use the sudo command for the following operations.
+3. Create the missing directory by running the command: 
+   ```
+   sudo mkdir -p /var/lib/gdm3/.config/mutter/sessions
+   ```
+4. Change the ownership of the directory to the gdm user by running:
+   ```
+   sudo chown -R gdm:gdm /var/lib/gdm3/.config/mutter/sessions
+   ```
+5. Confirm that the directory now exists and belongs to the gdm user by running:
+   ```
+   ls -ld /var/lib/gdm3/.config/mutter/sessions
+   ```
+   You should see output similar to:
+   ```
+   drwxr-xr-x 2 gdm gdm 4096 Jul 16 09:59 /var/lib/gdm3/.config/mutter/sessions
+   ```
+6. Restart your system or the display manager (e.g., GDM) to apply the changes.
+   ```
+   sudo systemctl restart gdm
+   ```
+   or
+   ```
+   sudo service gdm restart
+   ```
+
+After following these steps, the error message should no longer occur as the necessary directory will be created.
